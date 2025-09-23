@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Panchkula WMS</string>
+    <string name="go">GO</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="pass">$V$9Y$&amp;5E$&amp;Z</string>
+    <string name="delivery">Delivery :</string>
+    <string name="components">Components:</string>
+    <string name="issue_for_production">Issue for Production</string>
+    <string name="return_from_production">Return from Production</string>
+    <string name="receipt_production">Receipt Production</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure, you want to logout the application?</string>
+    <string name="logout">Logout</string>
+    <string name="VersionName">v-1.0.30 2025.07.29</string>
+    <string name="sap_login">SAP Login...</string>
+    <string name="user_name_mandatory">User Name <font color='#FF0000'>*</font></string>
+    <string name="password_mand">Password <font color='#FF0000'>*</font></string>
+    <string name="submit">Submit</string>
+    <string name="hint_select_freight"><![CDATA[Select Freight & Taxes]]></string>
+    <string name="done">Done</string>
+
+    <string-array name="doc_type">
+        <item>NOIDA</item>
+        <item>DHALWALA</item>
+        <item>DEHRADUN</item>
+        <item>HO</item>
+        <item>NOIDA-A8</item>c
+        <item>LOTTO</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.CLEAR_APP_CACHE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:name=".Global_Classes.MyApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:debuggable="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ProductionApp"
+        tools:ignore="HardcodedDebugMode"
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.returnComponents.ui.ReturnComponentLinesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.returnComponents.ui.ReturnComponentListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.production.ui.batchCard.PoBatchCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.scan_and_view.ScanViewDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.setting.SettingActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.pickList.PickListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pickList.PickListTransferLinesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.saleToDelivery.DeliveryListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.saleToDelivery.DeliveryDraftDocumentLinesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.saletoinvoice.SaleTransferLinesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.saletoinvoice.SaleToInvoiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".issueOrder.IssueOrderDetailDemoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.scan_and_view.ScanQRViewActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.inventoryTransfer.InventoryTransferActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.inventoryTransfer.InventoryLineTransferActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.goodsOrder.GoodsOrderActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.goodsreceipt.GoodsReceiptLineActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.goodsreceipt.GoodsReceiptActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".test.TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.invoiceOrder.UI.InventoryTransferLinesActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.inventoryOrder.UI.InventoryOrderActivity_ITR_GRPO"
+            android:exported="false" />
+        <activity
+            android:name=".ui.inventoryOrder.oldUI.InventoryOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.inventoryOrder.oldUI.InventoryTransferLinesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.inventoryOrder.oldUI.InventoryTransferRequestLinesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.purchase.PurchaseOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.production.ui.rfp.RFPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.production.ui.rfp.RFPLinesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.purchase.PurchaseTransferLinesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.deliveryOrderModule.UI.DeliveryDocumentLineActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DemoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.issueForProductionOrder.UI.qrScannerUi.QRScannerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.splashScreen.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.issueForProductionOrder.UI.productionOrderLines.ProductionOrderLinesActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.issueForProductionOrder.UI.productionOrderLines.ProductionListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="true" />
+    </application>
+
+</manifest>

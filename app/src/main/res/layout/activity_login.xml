@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!--<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/ic_login_back"
+    android:scaleType="fitXY"
+    android:alpha="0.8"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal|center"
+            android:orientation="vertical"
+            tools:context=".activities.Login">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.25"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="@dimen/size_10"
+                                android:background="@drawable/ic_login_logo" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/login_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/size_20"
+                            android:layout_marginRight="@dimen/size_20"
+                            android:orientation="vertical"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="Login"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size_24" />
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/inputLayoutDbUrl"
+                                style="@style/OutlinedTextInputLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:textColorHint="@color/grey"
+                                android:visibility="visible"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:boxStrokeErrorColor="@color/red"
+                                app:hintAnimationEnabled="true"
+                                app:startIconDrawable="@drawable/ic_db_link"
+                                app:startIconTint="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:startIconContentDescription="User Name">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtIPAddress"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Database Url"
+                                    android:digits="0123456789."
+                                    android:fontFamily="@font/muli_regular"
+                                    android:inputType="phone"
+                                    android:paddingLeft="@dimen/size_10"
+                                    android:paddingRight="@dimen/size_10"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_size_14" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/inputLayoutAppUrl"
+                                style="@style/OutlinedTextInputLayout"                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:textColorHint="@color/grey"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:boxStrokeErrorColor="@color/red"
+                                app:hintAnimationEnabled="true"
+                                app:startIconDrawable="@drawable/ic_app_link"
+                                app:startIconTint="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:startIconContentDescription="User Name">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtAppUrl"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="App Url"
+                                    android:digits="0123456789."
+                                    android:fontFamily="@font/muli_regular"
+                                    android:inputType="phone"
+                                    android:paddingLeft="@dimen/size_10"
+                                    android:paddingRight="@dimen/size_10"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_size_14" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!--                        // db name list-->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/dbNameLayout"
+                                style="@style/OutlinedTextInputLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:hint="Select DB"
+                                app:startIconDrawable="@drawable/database"
+                                app:startIconTint="@color/colorPrimary"
+                                app:endIconMode="dropdown_menu">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/AcDbNameList"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/white"
+                                    android:inputType="text"
+                                    android:paddingLeft="@dimen/size_10"
+                                    android:paddingRight="@dimen/size_10"
+                                    android:textSize="@dimen/text_size_14" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:hint="Enter Company Database"
+                                android:textColorHint="@color/black"
+                                android:visibility="gone"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:boxStrokeErrorColor="@color/red"
+                                app:hintAnimationEnabled="true"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:startIconContentDescription="User Name">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtCompanyDB"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/muli_regular"
+                                    android:inputType="textCapWords"
+                                    android:maxLines="1"
+                                    android:paddingLeft="@dimen/size_10"
+                                    android:paddingRight="@dimen/size_10"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_size_14" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textField"
+                                style="@style/OutlinedTextInputLayout"                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:hint="User Name"
+                                android:textColorHint="@color/grey"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:boxStrokeErrorColor="@color/red"
+                                app:hintAnimationEnabled="true"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:startIconContentDescription="User Name"
+                                app:startIconDrawable="@drawable/ic_user"
+                                app:startIconTint="@color/colorPrimary">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/login_username"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/muli_regular"
+                                    android:inputType="text"
+                                    android:maxLines="1"
+                                    android:paddingLeft="@dimen/size_10"
+                                    android:paddingRight="@dimen/size_10"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_size_14" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/passwordField"
+                                style="@style/OutlinedTextInputLayout"                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:hint="Password"
+                                android:textColorHint="@color/grey"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:boxStrokeErrorColor="@color/red"
+                                app:helperTextTextColor="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/textField"
+                                app:passwordToggleEnabled="true"
+                                app:passwordToggleTint="@color/colorPrimary"
+                                app:startIconContentDescription="User Name"
+                                app:startIconDrawable="@drawable/ic_password"
+                                app:startIconTint="@color/colorPrimary">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/login_password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/muli_regular"
+                                    android:inputType="textPassword"
+                                    android:maxLines="1"
+                                    android:paddingLeft="@dimen/size_10"
+                                    android:paddingRight="@dimen/size_10"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_size_14" />
+
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Switch
+                                android:id="@+id/switchForEnvironment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/size_2"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:drawablePadding="@dimen/size_5"
+                                android:includeFontPadding="false"
+                                android:text="Test Environment (Port : 9099)"
+                                android:textColor="#6A7276"
+                                android:background="@color/transparent"
+                                android:textSize="@dimen/text_size_14"
+                                android:textStyle="normal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:switchPadding="@dimen/size_5"
+                                android:checked="false"
+                                android:thumb="@drawable/switch_thumb_selector"
+                                android:track="@drawable/switch_track_selector"
+                                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                            <Button
+                                android:id="@+id/login_button"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_25"
+                                android:background="@drawable/login_button_rounded_corner"
+                                android:clickable="true"
+                                android:elevation="@dimen/text_size_2"
+                                android:fontFamily="@font/muli_bold"
+                                android:gravity="center"
+                                android:text="Login"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size_18"
+                                app:backgroundTint="@color/colorPrimary" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

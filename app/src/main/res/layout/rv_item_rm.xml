@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F6F6F6"
+    xmlns:tools="http://schemas.android.com/tools">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/size_10"
+            android:layout_marginBottom="@dimen/size_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/size_8"
+                android:orientation="vertical">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/layoutItemCode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/layoutItemType"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.33">
+
+                        <TextView
+                            android:id="@+id/tvItemCodeLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:text="Item Code"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvItemCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:paddingEnd="@dimen/size_8"
+                            android:text="10001339"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_12"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutItemType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@+id/layoutOpenQty"
+                        app:layout_constraintStart_toEndOf="@+id/layoutItemCode"
+                        app:layout_constraintTop_toTopOf="@+id/layoutItemCode"
+                        app:layout_constraintWidth_percent="0.33">
+
+                        <TextView
+                            android:id="@+id/tvItemTypeLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:text="ItemType"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvItemType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:paddingEnd="@dimen/size_8"
+                            android:text="None"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_12" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutOpenQty"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/layoutItemType"
+                        app:layout_constraintTop_toTopOf="@+id/layoutItemType"
+                        app:layout_constraintWidth_percent="0.34">
+
+                        <TextView
+                            android:id="@+id/tvOpenQtyLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:text="Open Qty."
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvOpenQtyRm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:paddingEnd="@dimen/size_8"
+                            android:text="10.00"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_12" />
+
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/tr_total_scan_fields"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/layoutItemName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@+id/layoutPostQty"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.66">
+
+                        <TextView
+                            android:id="@+id/tvItemNameLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:text="Item Name"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvItemDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:paddingEnd="@dimen/size_8"
+                            android:text="Fujifilm Instax Mini 11 Camera (Blue)"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_12" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layoutPostQty"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/layoutItemName"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.34">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:includeFontPadding="false"
+                            android:text="Batch Code"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etBatchCodeRm"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_30"
+                            android:inputType="text"
+                            android:background="@drawable/rounded_border_ligh_grey"
+                            android:hint="Scan Item Qr"
+                            android:paddingHorizontal="@dimen/size_8"
+                            android:textColor="@color/grey"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBatchItemPo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_8"
+                tools:itemCount="2"
+                tools:listitem="@layout/scanned_batch_item_layout"/>
+
+        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

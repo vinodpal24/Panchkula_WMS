@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8sp"
+                android:layout_marginTop="@dimen/text_size_12"
+                android:layout_marginBottom="@dimen/text_size_12"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_onback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_back_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/muli_bold"
+                    android:paddingLeft="8sp"
+                    android:text="@string/components"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_item_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/muli_regular"
+                    android:paddingLeft="8sp"
+                    android:text=" "
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/recycler_view_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="6dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginHorizontal="@dimen/size_5"
+                android:layout_marginVertical="@dimen/size_10"
+                android:backgroundTint="@color/login_background"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/size_15"
+                    android:paddingVertical="@dimen/size_10">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="3dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.20"
+                                android:fontFamily="@font/muli_bold"
+                                android:singleLine="true"
+                                android:text="Date "
+                                android:textSize="@dimen/text_size_12" />
+
+                            <TextView
+                                android:id="@+id/tvDate"
+                                android:layout_width="0dp"
+                                android:layout_height="38dp"
+                                android:paddingHorizontal="@dimen/size_15"
+                                android:gravity="center_vertical"
+                                android:alpha="0.5"
+                                android:layout_weight=".80"
+                                android:fontFamily="@font/muli_bold"
+                                android:background="@drawable/round_gray_backgruand"
+                                android:singleLine="true"
+                                android:text="FRONT LITE"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/size_8"
+                            android:visibility="visible"
+                            android:paddingBottom="3dp">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.20"
+                                android:fontFamily="@font/muli_bold"
+                                android:singleLine="true"
+                                android:text="Location "
+                                android:textSize="@dimen/text_size_12" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/OutlinedTextInputLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.80"
+                                android:layout_marginTop="0dp"
+                                app:hintEnabled="false"
+
+                                app:endIconMode="dropdown_menu">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acWarehouseLocation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:background="@drawable/round_gray_backgruand"
+                                    android:completionThreshold="1"
+                                    android:hint="Select Location"
+                                    android:textColorHint="@color/grey"
+                                    android:focusable="false"
+                                    android:inputType="text"
+                                    android:paddingStart="@dimen/size_15"
+                                    android:textSize="@dimen/text_size_12" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="0.20"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="QR Code"
+                                android:textSize="@dimen/text_size_12" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="38dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_weight="0.80"
+                                android:background="@drawable/round_gray_backgruand"
+                                android:fontFamily="@font/muli_bold"
+                                android:gravity="center_vertical"
+                                android:hint="Scan Item"
+                                android:orientation="horizontal"
+                                android:paddingTop="5sp"
+                                android:paddingBottom="5sp"
+                                app:boxBackgroundColor="@android:color/transparent"
+                                app:boxStrokeColor="@color/colorPrimary">
+
+                                <EditText
+                                    android:id="@+id/ed_batch_code_scan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:backgroundTint="@color/my_app_background_color"
+                                    android:ellipsize="end"
+                                    android:focusableInTouchMode="true"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:hint="Scan item"
+                                    android:imeOptions="actionDone|actionGo|actionSend"
+                                    android:lines="1"
+                                    android:maxLines="1"
+                                    android:paddingHorizontal="@dimen/size_15"
+                                    android:singleLine="true"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_scan_batch_code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="8sp"
+                                    android:src="@drawable/ic_baseline_qr_code_scanner_24" />
+
+                            </LinearLayout>
+                        </TableRow>
+
+                    </TableLayout>
+
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!--<androidx.cardview.widget.CardView
+                android:id="@+id/infoCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="6dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginHorizontal="@dimen/size_5"
+                app:cardElevation="2dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp">
+
+                        <LinearLayout
+                            android:id="@+id/scaned_item_layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:layout_weight="1.5"
+                            android:fontFamily="@font/muli_bold"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            android:visibility="visible">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="Information -"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="0.8"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="ItemCode"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvItemCode"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="80"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text="FL-JUMBO"
+                                        android:textSize="12sp" />
+
+
+                                </LinearLayout>
+
+                            </TableRow>
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Item Name"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvItemName"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="80"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text="FL-JUMBO"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                            </TableRow>
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Whs Code"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvWarehouseCode"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="80"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text="102"
+                                        android:textSize="12sp" />
+
+
+                                </LinearLayout>
+
+
+                            </TableRow>
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Item Type "
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvBatchLot"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="80"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text=""
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                            </TableRow>
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="UOM "
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvUOM"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text="1000233"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Lead Time"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvLeadTime"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text="102"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                            </TableRow>
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Min "
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvMin"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text=""
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Max"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvMax"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text="102"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                            </TableRow>
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="In Stock "
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvInStock"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text=""
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Ordered"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvOrdered"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text=""
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+
+                            </TableRow>
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Ava. Stock "
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvAvailaleStock"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text=""
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Commited"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvCommited"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text="102"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+
+                            </TableRow>
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="In Date "
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvInDate"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text=""
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Qty"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvQty"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text="102"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                            </TableRow>
+
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Mfg Date "
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvMfgDate"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text=""
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="50"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="20"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:text="Expiry Date"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvExpDate"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="30"
+                                        android:fontFamily="@font/muli_bold"
+                                        android:paddingStart="10dp"
+                                        android:text="102"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+
+                            </TableRow>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/infoCardView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="6dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginHorizontal="@dimen/size_5"
+                app:cardElevation="2dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/scaned_item_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1.5"
+                    android:fontFamily="@font/muli_bold"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/layoutItemCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/layoutMax"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="0.90">
+
+                            <TextView
+                                android:id="@+id/tvItemCodeLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="Item Code"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvItemCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="FL-JUMBO"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+                        </LinearLayout>
+
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.10"
+                            android:src="@drawable/ic_right_arrow"
+                            app:tint="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutItemName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/layoutMax"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <TextView
+                            android:id="@+id/tvItemNameLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:text="Item Name"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvItemName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:includeFontPadding="false"
+                            android:paddingEnd="@dimen/size_8"
+                            android:text="FL-JUMBO"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_size_12" />
+
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layoutWithoutErrand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <LinearLayout
+                            android:id="@+id/layoutItemType"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/layoutUom"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvItemTypeLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="ItemType"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvItemType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="Metro Heart Hospital"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutUom"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toStartOf="@+id/layoutLeadTime"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/layoutItemType"
+                            app:layout_constraintTop_toTopOf="@+id/layoutItemType">
+
+                            <TextView
+                                android:id="@+id/tvUomLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="UOM"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvUom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="07:30 PM"
+                                android:textAllCaps="true"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutLeadTime"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/layoutUom"
+                            app:layout_constraintTop_toTopOf="@+id/layoutUom">
+
+                            <TextView
+                                android:id="@+id/tvLeadTimeLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="Lead Time"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvLeadTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="11:25 PM"
+                                android:textAllCaps="true"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <LinearLayout
+                            android:id="@+id/layoutMin"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/layoutMax"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvMinLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="Min. Stock"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvMin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="0.0000"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutMax"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toStartOf="@+id/layoutInStock"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/layoutMin"
+                            app:layout_constraintTop_toTopOf="@+id/layoutMin">
+
+                            <TextView
+                                android:id="@+id/tvMaxLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="Max. Stock"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvMax"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="0.0000"
+                                android:textAllCaps="true"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutInStock"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/layoutMax"
+                            app:layout_constraintTop_toTopOf="@+id/layoutMax">
+
+                            <TextView
+                                android:id="@+id/tvInStockLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="In Stock"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvInStock"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="12.8900"
+                                android:textAllCaps="true"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <LinearLayout
+                            android:id="@+id/layoutOrdered"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/layoutAvailableStock"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvOrderedLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="Ordered"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvOrdered"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="0.0000"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutAvailableStock"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toStartOf="@+id/layoutCommited"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/layoutOrdered"
+                            app:layout_constraintTop_toTopOf="@+id/layoutOrdered">
+
+                            <TextView
+                                android:id="@+id/tvAvailableStockLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="Available Stock"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvAvailableStock"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="0.0000"
+                                android:textAllCaps="true"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutCommited"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/layoutAvailableStock"
+                            app:layout_constraintTop_toTopOf="@+id/layoutAvailableStock">
+
+                            <TextView
+                                android:id="@+id/tvCommitedLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:text="Commited"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvCommited"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:paddingEnd="@dimen/size_8"
+                                android:text="0.0000"
+                                android:textAllCaps="true"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_12" />
+
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <ImageView
+                android:id="@+id/iv_no_data_found"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:src="@drawable/nodatafound"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/transparent_color"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:visibility="gone">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:elevation="2dp"
+                    android:fontFamily="@font/muli_bold"
+                    android:text="Cancel"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/my_app_background_color"
+                    app:chipIconTint="@color/colorPrimary"
+                    app:chipStrokeColor="@color/colorPrimary"
+                    app:chipStrokeWidth="1dp"
+                    app:rippleColor="@color/colour_text_color" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:elevation="2dp"
+                    android:fontFamily="@font/muli_bold"
+                    android:gravity="center_horizontal"
+                    android:text="Save"
+                    android:textAlignment="center"
+                    android:textColor="@color/my_app_background_color"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/colorPrimary"
+                    app:chipIconTint="@color/colorPrimary"
+                    app:chipStrokeColor="@color/colorPrimary"
+                    app:chipStrokeWidth="1dp"
+                    app:rippleColor="@color/colour_text_color" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

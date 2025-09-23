@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="3dp"
+        app:cardCornerRadius="@dimen/size_10"
+        android:backgroundTint="@color/login_background"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5sp"
+                android:paddingTop="5sp"
+                android:paddingRight="5sp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="3dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:fontFamily="@font/muli_bold"
+                        android:singleLine="true"
+                        android:text="Item Name "
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_item_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="75"
+                        android:fontFamily="@font/muli_bold"
+                        android:text="FRONT LITE"
+                        android:textColor="@color/black"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="3dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:fontFamily="@font/muli_bold"
+                        android:singleLine="true"
+                        android:text="Item Code "
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_open_qty"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="25"
+                        android:fontFamily="@font/muli_bold"
+                        android:singleLine="true"
+                        android:text="FRONT LITE"
+                        android:textColor="@color/black"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/navCodeLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50">
+
+                        <TextView
+                            android:id="@+id/tv_Navicode_txt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:singleLine="true"
+                            android:text="Nav Code  "
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tv_Navicode"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+
+                </TableRow>
+
+
+                <LinearLayout
+                    android:id="@+id/issueAndDocumentlayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:orientation="vertical">
+
+                    <!--    <TableRow
+                            android:id="@+id/remainingLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="Remaining Qty "
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/tvRemainingQTy"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="25"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="0.0"
+                                android:textSize="11sp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="50">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="25"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="WHS  Code "
+                                    android:textSize="11sp" />
+
+                                <TextView
+                                    android:id="@+id/tvWHS"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="25"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="0.0"
+                                    android:textSize="11sp" />
+
+
+
+                            </LinearLayout>
+
+                        </TableRow>-->
+
+
+
+                    <TableRow
+                        android:id="@+id/from_warehouse_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tvFromWHS"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="From WHS   "
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/from_warehouse"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="0.0"
+                            android:textSize="11sp" />
+
+                        <LinearLayout
+                            android:id="@+id/toWHSLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50">
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="25"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="To WHS :  "
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/to_warehouse"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="25"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="0.0"
+                                android:textColor="@color/black"
+                                android:textSize="11sp" />
+
+                        </LinearLayout>
+                    </TableRow>
+
+
+                    <TableRow
+                        android:id="@+id/reqAndScanQtyLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="Req Box Qty   "
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tv_width"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="0.0"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="Scan Box Qty   "
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tv_length"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="0.0"
+                            android:textColor="@color/black"
+                            android:textSize="11sp" />
+                    </TableRow>
+
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:visibility="visible">
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="0"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="Req Pkt Qty :      "
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tv_gsm"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="0"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="0.0"
+                            android:textSize="11sp" />
+
+                    </TableRow>
+
+
+                    <TableRow
+                        android:id="@+id/tr_total_scan_fields"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:singleLine="true"
+                            android:text="Req PKt Qty   "
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tv_total_scann_qty"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:singleLine="true"
+                            android:text="0.0"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:singleLine="true"
+                            android:text="Scan Pkt Qty"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tv_total_scan_gw"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="25"
+                            android:fontFamily="@font/muli_bold"
+                            android:singleLine="true"
+                            android:text="0.0"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+
+                    <TableRow
+                        android:id="@+id/batchScanLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="3dp"
+                        android:paddingRight="5dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="0.5"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="Batch Code :  "
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/round_gray_backgruand"
+                            android:fontFamily="@font/muli_bold"
+                            android:gravity="center_vertical"
+                            android:hint="Scan Item"
+                            android:orientation="horizontal"
+                            android:paddingTop="5sp"
+                            android:paddingBottom="5sp"
+                            app:boxBackgroundColor="@android:color/transparent"
+                            app:boxStrokeColor="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/ed_batch_code_scan"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:backgroundTint="@color/my_app_background_color"
+                                android:ellipsize="end"
+                                android:focusableInTouchMode="true"
+                                android:fontFamily="@font/muli_bold"
+                                android:hint="Scan item"
+                                android:imeOptions="actionDone|actionGo|actionSend"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:paddingLeft="8sp"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_scan_batch_code"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="8sp"
+                                android:src="@drawable/ic_baseline_qr_code_scanner_24"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+                    </TableRow>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp">
+
+                    <LinearLayout
+                        android:id="@+id/scaned_item_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1.5"
+                        android:background="@drawable/round_gray_backgruand"
+                        android:fontFamily="@font/muli_bold"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:padding="8dp"
+                        android:visibility="gone">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="0.8"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="Batch        :  "
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_batch"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="0.5"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="1000233"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="Doc Entry            :  "
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_doc_entry"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="0.5"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="102"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="0.8"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="ItemCode  :  "
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_item_code"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="3"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="FL-JUMBO"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="ItemDescription  :  "
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_item_desc"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="3"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="FL-JUMBO"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="Status       :  "
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_status"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="3"
+                                    android:fontFamily="@font/muli_bold"
+                                    android:text="bdsStatus_Released"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </TableRow>
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_batch_items"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:visibility="visible"
+                        tools:itemCount="0"
+                        tools:listitem="@layout/batch_items_scanned_layout" />
+
+                </LinearLayout>
+
+            </TableLayout>
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

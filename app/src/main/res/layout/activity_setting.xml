@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting.SettingActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@android:color/white">
+
+        <ImageView
+            android:id="@+id/ivBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/size_8"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tvToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Setting"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvChooseScannerType"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="@dimen/size_40"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_20"
+                android:background="@drawable/border_outline_shape_setting"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:drawablePadding="@dimen/size_8"
+                android:drawableTint="@color/lightGrey"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_11"
+                android:paddingStart="@dimen/size_15"
+                android:text="Choose scanner type"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/tvSapLogin"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_45"
+                android:visibility="gone"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_20"
+                android:background="@drawable/border_outline_shape_setting"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:drawablePadding="@dimen/size_8"
+                android:drawableTint="@color/lightGrey"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/size_20"
+                android:text="SAP Login"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvChooseScannerType" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/OutlinedTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_20"
+
+                android:hint="Select Branch"
+                app:endIconMode="dropdown_menu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSapLogin">
+
+                <AutoCompleteTextView
+                    android:id="@+id/acBranches"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_40"
+                    android:backgroundTint="@color/white"
+                    android:completionThreshold="1"
+                    android:inputType="text"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingRight="@dimen/size_10"
+                    android:textSize="@dimen/text_size_11" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_20"
+                app:endIconMode="dropdown_menu"
+                android:hint="Select Home Item Layout"
+                style="@style/OutlinedTextInputLayout">
+
+                <AutoCompleteTextView
+                    android:id="@+id/acSpanCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_40"
+                    android:backgroundTint="@color/white"
+                    android:focusable="false"
+                    android:paddingStart="@dimen/size_15"
+                    android:completionThreshold="1"
+                    android:inputType="text"
+                    android:textSize="@dimen/text_size_11" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Switch
+                android:id="@+id/switchForEnvironment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_20"
+                android:drawablePadding="@dimen/size_5"
+                android:includeFontPadding="false"
+                android:text="Test Environment (Port : 9099)"
+                android:textColor="#6A7276"
+                android:background="@color/transparent"
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:switchPadding="@dimen/size_5"
+                android:checked="false"
+                android:thumb="@drawable/switch_thumb_selector"
+                android:track="@drawable/switch_track_selector"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

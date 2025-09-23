@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- <color name="colorPrimary">#3f3aed</color>-->
+    <color name="colorPrimary">#42A5F5</color>
+    <color name="purple_500">@color/colorPrimary</color>
+    <color name="common_blue">@color/colorPrimary</color>
+    <color name="common_grey">#7C7C7C</color>
+    <color name="purple_200">@color/colorPrimary</color>
+    <color name="login_background">#F1F4F9</color>
+    <color name="login_background_dark">#8DB3FF</color>
+    <color name="login_bg_dark">#DBE7FF</color>
+    <color name="login_background_dark_more">#0055FF</color>
+    <color name="login_txt">#686868</color>
+    <color name="outline_color">#36454F</color>
+    <color name="graph_green">#156A2E</color>
+    <color name="graph_safron">#FF9934</color>
+    <color name="graph_background">#F2F2F2</color>
+    <color name="icon_color_default">#C9CDD1</color>
+    <color name="transparent">@android:color/transparent</color>
+
+    <color name="status_live">#4CAF50</color> <!-- Material Green -->
+    <color name="status_test">#F44336</color> <!-- Material Red -->
+
+    <color name="transparent_color">#0000ffff</color>
+    <color name="dark_gray">@android:color/darker_gray</color>
+    <color name="purple_700">@color/colorPrimary</color>
+    <color name="overlay_dark_10">#aaa</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray4">#48DADADA</color>
+    <color name="colour_text_color">#839DD6</color>
+    <color name="color_trans_gray">#839DD6</color>
+    <color name="gray1">#DADADA</color>
+    <color name="my_app_background_color">#FFF</color>
+    <color name="title_back_dark">#F0F3FA</color>
+    <color name="tile_dark_color">#7B7C81</color>
+    <color name="green_title">#00C99F</color>
+    <color name="projected_title">#08658E</color>
+    <color name="different_title">#4F5457</color>
+    <color name="title_1">#F3425F</color>
+    <color name="title_2">#763EE7</color>
+    <color name="title_3">#EC660D</color>
+    <color name="title_4">@color/colorPrimary</color>
+    <color name="text_blue">#479ced</color>
+    <color name="maincolor">#479ced</color>
+    <color name="startColor">#479ced</color>
+    <color name="endColor">#479ced</color>
+    <color name="light_blue_600">#479ced</color>
+    <color name="light_blue_900">#479ced</color>
+    <color name="light_blue_A200">#479ced</color>
+    <color name="light_blue_A400">#479ced</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="calender_back">#0D000000</color>
+    <!-- <color name="hint_color">#828282</color>-->
+    <color name="hint_color">#a5afa6</color>
+    <color name="green">#39b449</color>
+    <color name="red">#FF6161</color>
+    <color name="red_color">#F11738</color>
+    <color name="grey">#7a7a7a</color>
+    <color name="lightGrey">#aaaaaa</color>
+    <color name="lightLightGrey">#B8B8B8</color>
+    <color name="veryLightGrey">#f0f0f0</color>
+    <color name="purple">#7d64e6</color>
+    <color name="yellow">#ffee00</color>
+    <color name="today_border">#e4e4e4</color>
+    <color name="today_background">#85f7f7f7</color>
+    <color name="secundaryTextColor">#757575</color>
+    <color name="primaryTextColor">#4d4d4d</color>
+    <color name="colorHover">#30818181</color>
+    <color name="graphBarColor">@color/colorPrimary</color>
+    <color name="text_back">#F9F9F9</color>
+    <color name="text_selected_back">@color/colorPrimary</color>
+    <color name="circle_color">#CDD2FD</color>
+    <color name="light_gray">#A8A8A8</color>
+    <color name="card_shadow_color">#D8EFFD</color>
+    <color name="barchart_line">#D8D8D8</color>
+    <color name="light_blue_barChart">#95B5FF</color>
+    <color name="safron_barChart">#FFA63D</color>
+    <color name="border_devider_color">#FAF9F9</color>
+    <color name="light_black">#212525</color>
+    <color name="card_sky_blue_back">#DBE6FF</color>
+    <color name="task_card_backgroud">#FDECB1</color>
+    <color name="horizontal_sky_border">#CCDCFF</color>
+    <color name="light_blue">#594A79E4</color>
+    <color name="light_grey_box">#CDCDCD</color>
+    <color name="text">@color/colorPrimary</color>
+    <color name="search">#ABABAB</color>
+    <color name="log_colour_background">#FBBDA3</color>
+    <array name="scheme_colors">
+        <item>@color/colorPrimary</item>
+        <item>@color/red</item>
+        <item>@color/green</item>
+        <item>@color/yellow</item>
+    </array>
+    <color name="colorDefaultBottomDialogBackground">#f0f0f0</color>
+    <color name="colorBottomDialogDefaultButton">#3983f1</color>
+    <color name="colorError">#ff5757</color>
+    <color name="devider_color">#D8D8D8</color>
+    <color name="devider_color_reports">#ECECEC</color>
+    <color name="colorBtnBackground">#C32F3F</color>
+
+
+</resources>

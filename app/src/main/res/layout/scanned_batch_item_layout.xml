@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/size_2"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/scannedItemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/muli_bold"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/layoutItemCode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/layoutBatchNo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.50">
+
+                    <TextView
+                        android:id="@+id/tvItemCodeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:includeFontPadding="false"
+                        android:text="Item Code"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvItemCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:includeFontPadding="false"
+                        android:paddingEnd="@dimen/size_8"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_size_12" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutBatchNo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/layoutItemCode"
+                    app:layout_constraintTop_toTopOf="@+id/layoutItemCode"
+                    app:layout_constraintWidth_percent="0.50">
+
+                    <TextView
+                        android:id="@+id/tvBatchType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:includeFontPadding="false"
+                        android:text="Batch No."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvBatchNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:includeFontPadding="false"
+                        android:paddingEnd="@dimen/size_8"
+                        android:text=""
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_size_12" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/size_5"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/layoutAcceptQty"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_marginEnd="@dimen/size_50"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muli_bold"
+                        android:includeFontPadding="false"
+                        android:text="Accept Quantity"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilAcceptQty"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_45"
+                        android:visibility="visible"
+                        app:boxCornerRadiusBottomEnd="@dimen/size_8"
+                        app:boxCornerRadiusBottomStart="@dimen/size_8"
+                        app:boxCornerRadiusTopEnd="@dimen/size_8"
+                        app:boxCornerRadiusTopStart="@dimen/size_8">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etAcceptQty"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:fontFamily="@font/muli_bold"
+                            android:inputType="numberDecimal"
+                            android:maxLength="10"
+                            android:text="0.00"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutRejectQty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/size_50"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/muli_bold"
+                        android:text="Reject Quantity"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilRejectQty"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_45"
+                        app:boxCornerRadiusBottomEnd="@dimen/size_8"
+                        app:boxCornerRadiusBottomStart="@dimen/size_8"
+                        app:boxCornerRadiusTopStart="@dimen/size_8"
+                        app:boxCornerRadiusTopEnd="@dimen/size_8"
+                        android:visibility="visible">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etRejectQty"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:fontFamily="@font/muli_bold"
+                            android:inputType="numberDecimal"
+                            android:maxLength="10"
+                            android:text="0.00"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:src="@drawable/baseline_cancel_24"
+            android:visibility="visible"
+            app:tint="@color/red" />
+
+    </LinearLayout>
+
+</LinearLayout>

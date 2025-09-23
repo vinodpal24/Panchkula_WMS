@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:paddingVertical="@dimen/size_5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/layoutSrNo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/layoutItemCode"
+            app:layout_constraintEnd_toStartOf="@+id/layoutItemCode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/layoutItemCode"
+            app:layout_constraintWidth_percent="0.10">
+
+            <TextView
+                android:id="@+id/tvSrNoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="Sr No"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_12"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSrNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:paddingEnd="@dimen/size_8"
+                android:text=""
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_12"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutItemCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/layoutBatchNo"
+            app:layout_constraintStart_toEndOf="@+id/layoutSrNo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.25">
+
+            <TextView
+                android:id="@+id/tvItemCodeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="Item Code"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_12"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvItemCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:paddingEnd="@dimen/size_8"
+                android:text=""
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_12"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutBatchNo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/layoutItemDesc"
+            app:layout_constraintStart_toEndOf="@+id/layoutItemCode"
+            app:layout_constraintTop_toTopOf="@+id/layoutItemCode"
+            app:layout_constraintWidth_percent="0.25">
+
+            <TextView
+                android:id="@+id/tvBatchType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="Batch No."
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_12"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvBatch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:paddingEnd="@dimen/size_8"
+                android:text=""
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_12" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutItemDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_2"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layoutBatchNo"
+            app:layout_constraintTop_toTopOf="@+id/layoutBatchNo"
+            app:layout_constraintWidth_percent="0.40">
+
+            <TextView
+                android:id="@+id/tvItemDescLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="Item Description"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_12"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvItemDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:paddingEnd="@dimen/size_8"
+                android:text=""
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_12" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/lightGrey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

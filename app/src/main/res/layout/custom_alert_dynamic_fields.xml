@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:orientation="vertical">
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Header TextView -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+        <TextView
+            android:padding="@dimen/size_10"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:id="@+id/dialog_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:text="Add Bin"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            tools:ignore="RtlCompat" />
+
+        <ImageView
+
+            android:layout_gravity="right"
+            android:id="@+id/addButton"
+            android:layout_width="@dimen/size_35"
+            android:layout_height="@dimen/size_35"
+            android:src="@drawable/plus_new"
+
+            />
+
+        </LinearLayout>
+
+        <TextView
+            android:padding="@dimen/size_10"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:id="@+id/item_quanity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item Quantity : "
+            android:textAlignment="center"
+            android:textSize="18sp"
+            tools:ignore="RtlCompat" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutBinLocation"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            hint="Select Bin Location">
+            <AutoCompleteTextView
+                android:id="@+id/acBinLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:inputType="text"
+                android:textSize="14sp"
+                android:text=""/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- First EditText -->
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/edit_QR"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tap Here to Scan"
+            android:inputType="text"/>
+
+        <!-- Second EditText -->
+        <EditText
+            android:visibility="visible"
+            android:id="@+id/quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantity"
+            android:inputType="number"/>
+
+        <!-- Button to add new EditTexts -->
+
+
+        <!-- Container for dynamic EditTexts -->
+        <LinearLayout
+            android:id="@+id/dynamicSpinner"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/dynamicEditTextsScanner"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
+        <LinearLayout
+            android:id="@+id/dynamicEditTextsQuantity"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Save and Cancel Buttons -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+          >
+
+            <Button
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+
+            <Button
+                android:layout_weight="1"
+                android:layout_gravity="end|center"
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+</com.google.android.material.card.MaterialCardView>

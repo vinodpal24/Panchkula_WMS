@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".sd.ui.scan_and_view.ScanViewDetailsActivity">
+
+    <TextView
+        android:id="@+id/tvTotalQty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/veryLightGrey"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="@dimen/size_4"
+        android:text="Total Quantity: 00.00"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvScanAndViewItem"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/size_10"
+        app:layout_constraintBottom_toTopOf="@+id/layoutActionBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalQty"
+        tools:ignore="MissingConstraints"
+        tools:itemCount="5"
+        tools:listitem="@layout/rv_item_scan_view" />
+
+    <LinearLayout
+        android:id="@+id/layoutActionBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/size_10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_marginEnd="@dimen/size_15"
+            android:layout_marginStart="@dimen/size_15"
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            app:cornerRadius="@dimen/size_20"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_14" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
