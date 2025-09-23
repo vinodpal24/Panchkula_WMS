@@ -20,6 +20,8 @@ import com.wms.panchkula.databinding.ActivityInventoryOrderLineBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.pixplicity.easyprefs.library.Prefs
+import com.webapp.internetconnection.CheckNetwoorkConnection
 import com.wms.panchkula.Global_Classes.AppConstants
 import com.wms.panchkula.Global_Classes.GlobalMethods
 import com.wms.panchkula.Global_Classes.GlobalMethods.convert_dd_MM_yyyy_into_yyyy_MM_dd
@@ -33,6 +35,7 @@ import com.wms.panchkula.interfaces.PassList
 import com.wms.panchkula.ui.invoiceOrder.UI.TAG
 import com.wms.panchkula.ui.issueForProductionOrder.Model.ScanedOrderBatchedItems
 import com.wms.panchkula.ui.issueForProductionOrder.Model.WarehouseBPL_IDModel
+import com.wms.panchkula.ui.login.LoginActivity
 import com.wms.panchkula.ui.production.model.rfp.RFPItemAdapter
 import com.wms.panchkula.ui.production.model.rfp.RFPResponse
 import com.wms.panchkula.ui.purchase.model.PurchasePostResponse
@@ -70,8 +73,9 @@ class RFPLinesActivity : AppCompatActivity(), PassList,
     private var RFPLinesList_gl: ArrayList<RFPResponse.Value> = arrayListOf() // Use nullable type
 
     // private var value: ArrayList<Value> = arrayListOf()
-    var position: Int? = 0
+    //var position: Int? = 0
     lateinit var networkConnection: NetworkConnection
+    lateinit var checkNetwoorkConnection: CheckNetwoorkConnection
     lateinit var materialProgressDialog: MaterialProgressDialog
     private lateinit var sessionManagement: SessionManagement
     private var BPLIDNum = 0
@@ -94,34 +98,24 @@ class RFPLinesActivity : AppCompatActivity(), PassList,
         activityFormBinding.scanView.visibility = View.GONE
         activityFormBinding.layoutDocDate.visibility = View.VISIBLE
         title = "Form Screen"
+
+//todo initialization...
+        networkConnection = NetworkConnection()
+        checkNetwoorkConnection = CheckNetwoorkConnection(application)
+        materialProgressDialog = MaterialProgressDialog(this@RFPLinesActivity)
+        sessionManagement = SessionManagement(this@RFPLinesActivity)
+
+        deleteCache(this)
+        supportActionBar?.hide()
+
         try {
-            // inventoryItem = intent.getSerializableExtra("inventReqModel") as PurchaseRequestModel.Value
-
-
+            val poNum = intent.getStringExtra("PO_NO")
+            if(poNum?.isNotEmpty() == true){
+                loadInvoiceRequestItems(poNum)
+            }
         } catch (e: Exception) {
             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
-
-
-        // Check if the list is null or empty before using it
-        if (RFPLinesList_gl.isNullOrEmpty()) {
-            Log.d("RFPLinesActivity", "RFPLinesList_gl is empty or not received")
-        } else {
-            Log.d("RFPLinesActivity", "Received RFPLinesList_gl: $RFPLinesList_gl")
-
-            // Print each item separately
-            RFPLinesList_gl?.forEach { item ->
-                Log.d("RFPLinesActivity", "Item: $item")
-            }
-        }
-
-
-        deleteCache(this)
-
-        supportActionBar?.hide()
-
-        Log.d("checking", "Working Tarun")
-
         activityFormBinding.ivLaserCode.setFocusable(true)
         activityFormBinding.ivLaserCode.requestFocus()
 
@@ -133,20 +127,14 @@ class RFPLinesActivity : AppCompatActivity(), PassList,
         }, 200)
 
 
-        //todo initialization...
-        networkConnection = NetworkConnection()
-        materialProgressDialog = MaterialProgressDialog(this@RFPLinesActivity)
-        sessionManagement = SessionManagement(this@RFPLinesActivity)
-
-
         //todo get arguments data...
-        try {
+        /*try {
             val intent = intent
             //   productionOrderLineList_gl = intent.getSerializableExtra("productionLinesList") as ArrayList<PurchaseRequestModel.StockTransferLines>
             RFPLinesList_gl = intent.getSerializableExtra("itemList") as? ArrayList<RFPResponse.Value> ?: ArrayList()
 
             inventoryItemNew = RFPLinesList_gl!!.get(0);
-            position = intent.extras?.getInt("pos")
+            //position = intent.extras?.getInt("pos")
             activityFormBinding.tvTitle.text = "Production Order : " + inventoryItemNew!!.AbsoluteEntry
             postingDate = convert_yyyy_MM_dd_T_hh_mm_ss_into_ddMMYYYY(inventoryItemNew!!.PostingDate)
             setAdapter()
@@ -155,14 +143,13 @@ class RFPLinesActivity : AppCompatActivity(), PassList,
             Log.e(TAG, "onCreate:===> " + e.message)
 
             e.printStackTrace()
-        }
+        }*/
 
 
 
         activityFormBinding.ivOnback.setOnClickListener {
             onBackPressed()
         }
-
 
         //todo cancel lines...
         activityFormBinding.chipCancel.setOnClickListener {
@@ -172,6 +159,93 @@ class RFPLinesActivity : AppCompatActivity(), PassList,
             GlobalMethods.disableDatesBetweenPoDateAndToday(this@RFPLinesActivity, activityFormBinding.etDocDate, postingDate)
         }
 
+
+    }
+
+    fun loadInvoiceRequestItems(docNum: String) {
+        checkNetwoorkConnection.observe(this) { isConnected ->
+            if (isConnected) {
+                materialProgressDialog.show()
+                var apiConfig = ApiConstantForURL()
+
+                NetworkClients.updateBaseUrlFromConfig(apiConfig)
+
+                QuantityNetworkClient.updateBaseUrlFromConfig(apiConfig)
+
+                val networkClient = QuantityNetworkClient.create(this)
+                val bplId = if (Prefs.getString(AppConstants.BPLID, "").isNotEmpty()) Prefs.getString(AppConstants.BPLID, "") else ""
+                networkClient.getRFPList(bplId, docNum).apply {
+                    enqueue(object : Callback<RFPResponse> {
+                        override fun onResponse(
+                            call: Call<RFPResponse>,
+                            response: Response<RFPResponse>
+                        ) {
+                            try {
+                                if (response.isSuccessful) {
+
+                                    materialProgressDialog.dismiss()
+                                    var productionListModel1 = response.body()!!
+                                    var productionList_gl = productionListModel1.value
+
+                                    if (!productionList_gl.isNullOrEmpty() && productionList_gl.size > 0) {
+                                        RFPLinesList_gl.clear()
+                                        RFPLinesList_gl.addAll(productionList_gl)
+                                        try {
+                                            inventoryItemNew = RFPLinesList_gl!!.get(0);
+                                            //position = intent.extras?.getInt("pos")
+                                            activityFormBinding.tvTitle.text = "Production Order : " + inventoryItemNew!!.AbsoluteEntry
+                                            postingDate = convert_yyyy_MM_dd_T_hh_mm_ss_into_ddMMYYYY(inventoryItemNew!!.PostingDate)
+                                            setAdapter()
+
+                                        } catch (e: IOException) {
+                                            Log.e(TAG, "onCreate:===> " + e.message)
+
+                                            e.printStackTrace()
+                                        }
+                                    }
+
+                                } else {
+                                    materialProgressDialog.dismiss()
+                                    val gson1 = GsonBuilder().create()
+                                    var mError: OtpErrorModel
+                                    try {
+                                        val s = response.errorBody()!!.string()
+                                        mError = gson1.fromJson(s, OtpErrorModel::class.java)
+                                        Log.e("MSZ==>", mError.error.message.value)
+                                        if (mError.error.code == 400) {
+                                            GlobalMethods.showError(this@RFPLinesActivity, mError.error.message.value)
+                                        }
+                                        if (mError.error.code == 306 && mError.error.message.value != null) {
+                                            GlobalMethods.showError(this@RFPLinesActivity, mError.error.message.value)
+                                            val mainIntent = Intent(this@RFPLinesActivity, LoginActivity::class.java)
+                                            startActivity(mainIntent)
+                                            finish()
+                                        }
+                                        /*if (mError.error.message.value != null) {
+                                            AppConstants.showError(this@ProductionListActivity, mError.error.message.value)
+                                            Log.e("json_error------", mError.error.message.value)
+                                        }*/
+                                    } catch (e: IOException) {
+                                        e.printStackTrace()
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<RFPResponse>, t: Throwable) {
+                            Log.e("issueCard_failure-----", t.toString())
+                            materialProgressDialog.dismiss()
+                        }
+                    })
+                }
+
+            } else {
+                materialProgressDialog.dismiss()
+                GlobalMethods.showError(this, "No Network Connection")
+            }
+        }
 
     }
 
@@ -231,8 +305,11 @@ class RFPLinesActivity : AppCompatActivity(), PassList,
     //todo override function for save items posting
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onApiResponseStock(
-        response: HashMap<String, ArrayList<ScanedOrderBatchedItems.Value>>, listResponse: ArrayList<RFPResponse.Value>,
-        quantityResponse: HashMap<String, ArrayList<String>>, serialQuantityResponse: java.util.HashMap<String, ArrayList<String>>, noneQuantityResponse: java.util.HashMap<String, ArrayList<String>>
+        response: HashMap<String, ArrayList<ScanedOrderBatchedItems.Value>>,
+        listResponse: ArrayList<RFPResponse.Value>,
+        quantityResponse: HashMap<String, ArrayList<String>>,
+        serialQuantityResponse: java.util.HashMap<String, ArrayList<String>>,
+        noneQuantityResponse: java.util.HashMap<String, ArrayList<String>>
     ) {
         Log.e("hashmap--->", quantityResponse.toString())
 
@@ -297,13 +374,12 @@ class RFPLinesActivity : AppCompatActivity(), PassList,
                 jsonObject.addProperty("WarehouseCode", list[i].WarehouseCode)
 
 
-               /*val stockBin = JsonArray()
-                val batchBin = JsonArray()
-                val serialBin = JsonArray()*/
+                /*val stockBin = JsonArray()
+                 val batchBin = JsonArray()
+                 val serialBin = JsonArray()*/
 
                 batchList = hashMapBatchList.get("Item" + i)!!
                 batchQuantityList = hashmapBatchQuantityList.get("Item" + i)!!
-
 
 
                 val stockBinMap = mutableMapOf<String, JsonObject>() // For grouping by BinAbsEntry
@@ -318,7 +394,8 @@ class RFPLinesActivity : AppCompatActivity(), PassList,
                     if (existingStockObj != null) {
                         // Update existing quantity
                         val existingQty = existingStockObj.get("Quantity").asDouble
-                        existingStockObj.addProperty("Quantity",
+                        existingStockObj.addProperty(
+                            "Quantity",
                             (existingQty + current.Quantity.toDoubleOrNull()!!)
                         )
                     } else {

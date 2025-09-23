@@ -38,6 +38,7 @@ import com.wms.panchkula.ui.production.adapter.batchCode.StageItemAdapter
 import com.wms.panchkula.ui.production.model.batchCode.ProductionOrderData
 import com.wms.panchkula.ui.production.model.batchCode.ProductionOrderStageModel
 import com.wms.panchkula.ui.production.model.batchCode.StageUpdateRequest
+import com.wms.panchkula.ui.production.ui.rfp.RFPLinesActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -80,6 +81,13 @@ class PoBatchCardActivity : AppCompatActivity() {
 
     private fun clickListener() {
         binding.apply {
+
+            chipRfp.setOnClickListener {
+                val docNum = poStagesList[0].DocumentNumber
+                startActivity(Intent(this@PoBatchCardActivity,RFPLinesActivity::class.java).apply {
+                    putExtra("PO_NO",docNum)
+                })
+            }
 
             edPoCodeScan.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
