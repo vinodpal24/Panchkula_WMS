@@ -99,7 +99,7 @@ class RFPLinesActivity : AppCompatActivity(), PassList,
         activityFormBinding.layoutDocDate.visibility = View.VISIBLE
         title = "Form Screen"
 
-//todo initialization...
+        //todo initialization...
         networkConnection = NetworkConnection()
         checkNetwoorkConnection = CheckNetwoorkConnection(application)
         materialProgressDialog = MaterialProgressDialog(this@RFPLinesActivity)

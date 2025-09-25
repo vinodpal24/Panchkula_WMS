@@ -33,15 +33,29 @@ class StageItemAdapter(
     override fun onBindViewHolder(holder: StageViewHolder, position: Int) {
         val stage = stages[position]
         with(holder.binding) {
-            if (stage.ProductionOrderLines.isNotEmpty()) {
+            /*if (stage.ProductionOrderLines.isNotEmpty()) {
                 holder.binding.layoutStageItem.setBackgroundResource(R.drawable.bg_stage_item_open)
             } else {
                 holder.binding.layoutStageItem.setBackgroundResource(R.drawable.bg_stage_item_freeze)
-            }
+            }*/
+            val accept = stage.U_AQty
+            val reject = stage.U_RQty
+            layoutStageItem.setBackgroundResource(
+                when {
+                    // Case 1: Both Accept & Reject Qty are empty (null or 0) → freeze
+                    (accept == 0.0 && reject == 0.0) -> R.drawable.bg_stage_item_freeze
+
+                    // Case 2: Either Accept > 0 and Reject = 0 OR Accept = 0 and Reject > 0 → freeze
+                    (accept > 0.0 && reject == 0.0) || (accept == 0.0 && reject > 0.0) -> R.drawable.bg_stage_item_freeze
+
+                    // Case 3: Otherwise → open
+                    else -> R.drawable.bg_stage_item_open
+                }
+            )
             tvStageName.text = stage.Name
             val openQty: Double = when (position) {
                 0 -> plannedQuantity.toDoubleOrNull() ?: 0.0   // first stage = Planned qty
-                else -> stages[position - 1].U_AQty //- stages[position - 1].U_RQty  // from previous stage's accepted qty
+                else -> stages[position].U_AQty //- stages[position - 1].U_RQty  // from previous stage's accepted qty
             }
             tvOpenQty.text = openQty.toString() // "100.00"  // for demo
 
@@ -56,9 +70,9 @@ class StageItemAdapter(
                 val reject = etRejectQty.text?.toString()?.toDoubleOrNull() ?: 0.0
 
                 when {
-                    accept == 0.0 && reject == 0.0 -> {
+                    /*accept == 0.0 && reject == 0.0 -> {
                         Toast.makeText(root.context, "Both qty cannot be equal to 0", Toast.LENGTH_SHORT).show()
-                    }
+                    }*/
                     accept < 0.0 -> {
                         Toast.makeText(root.context, "Accept qty cannot be less than 0", Toast.LENGTH_SHORT).show()
                     }
@@ -67,11 +81,12 @@ class StageItemAdapter(
                         Toast.makeText(root.context, "Reject qty cannot be less than 0", Toast.LENGTH_SHORT).show()
                     }
 
-                    accept + reject > openQty -> {
+                    /*accept + reject > openQty -> {
                         Toast.makeText(root.context, "Cannot exceed open qty ($openQty)", Toast.LENGTH_SHORT).show()
-                    }
+                    }*/
 
                     else -> {
+                        stage.OpenQty = openQty
                         stage.AcceptQty = accept
                         stage.RejectQty = reject
                         onStageUpdate(position, stage)

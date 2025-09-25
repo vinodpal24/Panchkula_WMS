@@ -29,7 +29,7 @@ data class ProductionOrderStageModel(
             val StageId: String,
             val U_AQty:Double=0.0,
             val U_RQty:Double=0.0,
-            var OpenQty:Double?=0.0,
+            var OpenQty:Double?=0.0, // locally handle
             var AcceptQty:Double?=0.0, // locally handle
             var RejectQty:Double?=0.0, // locally handle
         ):Serializable {

@@ -234,20 +234,45 @@ class PoBatchCardActivity : AppCompatActivity() {
 
                 // Updated stage object with AcceptQty & RejectQty
                 Log.d("STAGE_UPDATE", "Stage ${updatedStage.StageId} => Accept: ${updatedStage.AcceptQty}, Reject: ${updatedStage.RejectQty}")
+
+                val openQty = updatedStage.OpenQty ?: 0.0
+                val acceptQty = updatedStage.AcceptQty ?: 0.0
+                val rejectQty = updatedStage.RejectQty ?: 0.0
+
+                // Validate sum
+                val totalQty = acceptQty + rejectQty
+                if (totalQty > openQty) {
+                    // Show error if sum exceeds OpenQty
+                    GlobalMethods.showError(this@PoBatchCardActivity, "Total of Accept and Reject Qty cannot exceed Open Qty ($openQty).")
+                    //Toast.makeText(this@PoBatchCardActivity, "Total of Accept and Reject Qty cannot exceed Open Qty ($openQty).", Toast.LENGTH_SHORT).show()
+                    return@StageItemAdapter // stop further execution
+                } else if (totalQty < openQty) {
+                    // Show error if sum is less than OpenQty
+                    GlobalMethods.showError(this@PoBatchCardActivity, "Total of Accept and Reject Qty must be equal to Open Qty ($openQty).")
+                    //Toast.makeText(this@PoBatchCardActivity, "Total of Accept and Reject Qty must be equal to Open Qty ($openQty).", Toast.LENGTH_SHORT).show()
+                    return@StageItemAdapter
+                }else if(acceptQty == 0.0 && rejectQty == 0.0){
+                    GlobalMethods.showError(this@PoBatchCardActivity, "Accept Qty and Reject Qty both can't be zero.")
+                    //Toast.makeText(this@PoBatchCardActivity, "Accept Qty and Reject Qty both can't be zero.", Toast.LENGTH_SHORT).show()
+                    return@StageItemAdapter
+                }
+
+                // If validation passes, prepare stage request
                 val stageRequest = StageUpdateRequest()
 
                 // Add stage dynamically
                 stageRequest.ProductionOrdersStages.add(
                     StageUpdateRequest.ProductionOrderStage(
                         StageID = updatedStage.StageId.toInt(),
-                        U_AQty = updatedStage.AcceptQty ?: 0.0,
-                        U_RQty = updatedStage.RejectQty ?: 0.0
+                        U_AQty = acceptQty,
+                        U_RQty = rejectQty
                     )
                 )
 
-                Log.i("STAGE_UPDATE", "JSON: ${toPrettyJson(stageRequest)}")
-                callPOStageApi(stageRequest)
+                Log.i("STAGE_UPDATE", "JSON in state update: ${toPrettyJson(stageRequest)}")
+                //callPOStageApi(stageRequest)
             }
+
         )
 
         binding.rvPoStages.layoutManager = LinearLayoutManager(this)
