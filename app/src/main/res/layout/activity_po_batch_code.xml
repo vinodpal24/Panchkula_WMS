@@ -84,7 +84,7 @@
         android:layout_marginTop="@dimen/size_5"
         android:layout_marginBottom="@dimen/size_10"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/chipRfp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -223,6 +223,7 @@
     <com.google.android.material.chip.Chip
         android:id="@+id/chipRfp"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="55dp"
         android:layout_margin="@dimen/size_10"
         android:elevation="2dp"

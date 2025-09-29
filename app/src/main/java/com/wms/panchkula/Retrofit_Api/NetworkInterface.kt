@@ -19,6 +19,7 @@ import com.wms.panchkula.ui.inventoryOrder.Model.DefaultToBinLocationModel
 import com.wms.panchkula.ui.inventoryTransfer.model.Warehouse_BPLID
 import com.wms.panchkula.ui.pickList.model.PickListsResponse
 import com.wms.panchkula.ui.production.model.batchCode.ProductionOrderStageModel
+import com.wms.panchkula.ui.production.model.batchCode.StageStatusUpdateRequest
 import com.wms.panchkula.ui.production.model.batchCode.StageUpdateRequest
 import com.wms.panchkula.ui.production.model.rfp.RFPResponse
 import com.wms.panchkula.ui.purchase.model.FreightTypeModel
@@ -350,6 +351,12 @@ interface NetworkInterface {
     fun updateProductionOrderStage(
         @Path("DocEntry") docEntry: String,
         @Body stageQtyUpdate: StageUpdateRequest
+    ): Call<Void>
+
+    @PATCH("${ApiConstant.PRODUCTION_ORDER_UPDATE}({DocEntry})")
+    fun updateStageStatus(
+        @Path("DocEntry") docEntry: String,
+        @Body stageStatusUpdate: StageStatusUpdateRequest
     ): Call<Void>
 
 }

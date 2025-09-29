@@ -59,6 +59,7 @@ class PoBatchCardActivity : AppCompatActivity() {
     private lateinit var productionOrderStageModel: ProductionOrderStageModel
     private lateinit var sessionManagement: SessionManagement
     private lateinit var stageAdapter: StageItemAdapter
+    private lateinit var docNum: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,9 +84,9 @@ class PoBatchCardActivity : AppCompatActivity() {
         binding.apply {
 
             chipRfp.setOnClickListener {
-                val docNum = poStagesList[0].DocumentNumber
-                startActivity(Intent(this@PoBatchCardActivity,RFPLinesActivity::class.java).apply {
-                    putExtra("PO_NO",docNum)
+                docNum = poStagesList[0].DocumentNumber
+                startActivity(Intent(this@PoBatchCardActivity, RFPLinesActivity::class.java).apply {
+                    putExtra("PO_NO", docNum)
                 })
             }
 
@@ -144,6 +145,15 @@ class PoBatchCardActivity : AppCompatActivity() {
                                         materialProgressDialog.dismiss()
                                         productionOrderStageModel = response.body()!!
                                         var productionList_gl = productionOrderStageModel.value
+                                        val lastStage = productionList_gl[0].ProductionOrdersStages.lastOrNull()
+                                        if (
+                                            ((lastStage?.U_AQty ?: 0.0) > 0.0 && (lastStage?.U_RQty ?: 0.0) >= 0.0) ||
+                                            ((lastStage?.U_AQty ?: 0.0) >= 0.0 && (lastStage?.U_RQty ?: 0.0) > 0.0)
+                                        ) {
+                                            binding.chipRfp.visibility = View.VISIBLE
+                                        } else {
+                                            binding.chipRfp.visibility = View.GONE
+                                        }
                                         if (productionList_gl.isEmpty()) {
                                             binding.tvNoDataFound.visibility = View.VISIBLE
                                             binding.rvPoStages.visibility = View.INVISIBLE
@@ -206,24 +216,35 @@ class PoBatchCardActivity : AppCompatActivity() {
 
     private fun setStageAdapter() {
         stageAdapter = StageItemAdapter(
+            context = this@PoBatchCardActivity,
             stages = poStagesList[0].ProductionOrdersStages,
             plannedQuantity = poStagesList[0].PlannedQuantity,
             onStageClick = { stagePos, stage ->
                 if (stage.ProductionOrderLines.isNotEmpty()) {
-                    val productionListModel = mapStageModelToListModel(productionOrderStageModel)
-                    Log.e("PO_DATA", "productionListModel : ${toPrettyJson(productionListModel)}")
-                    var productionValueList = productionListModel.value[0]
-                    var productionLinesList = productionListModel.value[0].ProductionOrdersStages[stagePos].ProductionOrderLines
+                    if (stage.U_Status == "No" && stage.U_AQty == 0.0 && stage.U_RQty == 0.0) {
+                        if(stage.OpenQty !=0.0){
+                            val productionListModel = mapStageModelToListModel(productionOrderStageModel)
+                            Log.e("PO_DATA", "productionListModel : ${toPrettyJson(productionListModel)}")
+                            var productionValueList = productionListModel.value[0]
+                            var productionLinesList = productionListModel.value[0].ProductionOrdersStages[stagePos].ProductionOrderLines
 
-                    Toast.makeText(this, "Stage [$stagePos]: ${stage.Name}", Toast.LENGTH_SHORT).show()
-                    Log.i("PO_DATA", "Stage Item[$stagePos] List : ${stage.ProductionOrderLines}")
-                    startActivity(Intent(this@PoBatchCardActivity, ProductionOrderLinesActivity::class.java).apply {
-                        putExtra("productionLinesList", productionLinesList as Serializable)
-                        putExtra("productionValueList", productionValueList as Serializable)
-                    })
+                            //Toast.makeText(this, "Stage [$stagePos]: ${stage.Name}", Toast.LENGTH_SHORT).show()
+                            Log.i("PO_DATA", "Stage Item[$stagePos] List : ${stage.ProductionOrderLines}")
+                            startActivity(Intent(this@PoBatchCardActivity, ProductionOrderLinesActivity::class.java).apply {
+                                putExtra("productionLinesList", productionLinesList as Serializable)
+                                putExtra("productionValueList", productionValueList as Serializable)
+                                putExtra("stageId", stage.StageId)
+                            })
 
-                    if (productionLinesList.size > 0) {
-                        sessionManagement.setWarehouseCode(this@PoBatchCardActivity, productionLinesList[0].Warehouse)
+                            if (productionLinesList.size > 0) {
+                                sessionManagement.setWarehouseCode(this@PoBatchCardActivity, productionLinesList[0].Warehouse)
+                            }
+                        }else{
+                            GlobalMethods.showError(this@PoBatchCardActivity, "You have to complete open stage first.")
+                        }
+
+                    }else if(stage.U_Status=="Yes"){
+                        GlobalMethods.showError(this@PoBatchCardActivity, "You have already issue RM items for this stage.")
                     }
                 } else {
                     GlobalMethods.showError(this@PoBatchCardActivity, "RM item is not available in this stage.")
@@ -251,7 +272,7 @@ class PoBatchCardActivity : AppCompatActivity() {
                     GlobalMethods.showError(this@PoBatchCardActivity, "Total of Accept and Reject Qty must be equal to Open Qty ($openQty).")
                     //Toast.makeText(this@PoBatchCardActivity, "Total of Accept and Reject Qty must be equal to Open Qty ($openQty).", Toast.LENGTH_SHORT).show()
                     return@StageItemAdapter
-                }else if(acceptQty == 0.0 && rejectQty == 0.0){
+                } else if (acceptQty == 0.0 && rejectQty == 0.0) {
                     GlobalMethods.showError(this@PoBatchCardActivity, "Accept Qty and Reject Qty both can't be zero.")
                     //Toast.makeText(this@PoBatchCardActivity, "Accept Qty and Reject Qty both can't be zero.", Toast.LENGTH_SHORT).show()
                     return@StageItemAdapter
@@ -270,7 +291,7 @@ class PoBatchCardActivity : AppCompatActivity() {
                 )
 
                 Log.i("STAGE_UPDATE", "JSON in state update: ${toPrettyJson(stageRequest)}")
-                //callPOStageApi(stageRequest)
+                callPOStageApi(stageRequest)
             }
 
         )
@@ -303,10 +324,10 @@ class PoBatchCardActivity : AppCompatActivity() {
                                         "Stage updated successfully."
                                     )
                                 }
-
-                                Handler(Looper.getMainLooper()).postDelayed({
+                                loadPoListItems(docNum)
+                                /*Handler(Looper.getMainLooper()).postDelayed({
                                     finish()
-                                }, 1000)
+                                }, 1000)*/
                             } else {
                                 materialProgressDialog.dismiss()
                                 val gson1 = GsonBuilder().create()

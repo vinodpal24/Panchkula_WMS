@@ -45,6 +45,8 @@ import com.wms.panchkula.Global_Classes.GlobalMethods.showSuccessDialog
 import com.wms.panchkula.Global_Classes.GlobalMethods.toPrettyJson
 import com.wms.panchkula.Global_Classes.GlobalMethods.toSimpleJson
 import com.wms.panchkula.R
+import com.wms.panchkula.ui.production.model.batchCode.StageStatusUpdateRequest
+import com.wms.panchkula.ui.production.model.batchCode.StageUpdateRequest
 import com.wms.panchkula.ui.purchase.model.PurchaseRequestModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -85,6 +87,7 @@ class ProductionOrderLinesActivity : AppCompatActivity(), PassList, ProductionOr
     private var valueList: List<ProductionListModel.Value> = ArrayList()
     private var connection: Connection? = null
     private lateinit var postingDate: String
+    private lateinit var stageId: String
     var openQty = 0.0
 
     //todo batch scan and quantity list interface override...
@@ -121,12 +124,14 @@ class ProductionOrderLinesActivity : AppCompatActivity(), PassList, ProductionOr
         try {
             val intent = intent
             productionOrderLineList_gl = intent.getSerializableExtra("productionLinesList") as ArrayList<ProductionListModel.ProductionOrderLine>
-            productionOrderValueList_gl = intent.getSerializableExtra("productionValueList") as ProductionListModel.Value //todo getting list selected item values and lines only not all size data..
+            productionOrderValueList_gl =
+                intent.getSerializableExtra("productionValueList") as ProductionListModel.Value //todo getting list selected item values and lines only not all size data..
             position = intent.extras?.getInt("pos")
+            stageId = intent.extras?.getString("stageId").toString()
             postingDate = convert_yyyy_MM_dd_T_hh_mm_ss_into_ddMMYYYY(productionOrderValueList_gl.PostingDate)
             valueList = listOf(productionOrderValueList_gl)
 
-            Log.i("PO_LIST","productionOrderLineList_gl: ${toPrettyJson(productionOrderLineList_gl)}")
+            Log.i("PO_LIST", "productionOrderLineList_gl: ${toPrettyJson(productionOrderLineList_gl)}")
 
         } catch (e: IOException) {
             Log.e(TAG, "onCreate:===> " + e.message)
@@ -271,6 +276,81 @@ class ProductionOrderLinesActivity : AppCompatActivity(), PassList, ProductionOr
         }
     }
 
+    private fun callUpdateStageStatusApi(requestModel: StageStatusUpdateRequest) {
+        if (networkConnection.getConnectivityStatusBoolean(applicationContext)) {
+            materialProgressDialog.show()
+            var apiConfig = ApiConstantForURL()
+
+            NetworkClients.updateBaseUrlFromConfig(apiConfig)
+
+            val networkClient = NetworkClients.create(this@ProductionOrderLinesActivity)
+
+            networkClient.updateStageStatus(productionOrderValueList_gl.AbsoluteEntry, requestModel).apply {
+                enqueue(object : Callback<Void> {
+                    override fun onResponse(
+                        call: Call<Void>,
+                        response: Response<Void>
+                    ) {
+                        try {
+                            materialProgressDialog.dismiss()
+                            if (response.isSuccessful && response.code() == 204) {
+                                Log.d("success------", "U_Status updated successfully")
+                                /* runOnUiThread {
+                                     GlobalMethods.showSuccess(
+                                         this@ProductionOrderLinesActivity,
+                                         "Stage updated successfully."
+                                     )
+                                 }
+
+                                 Handler(Looper.getMainLooper()).postDelayed({
+                                     finish()
+                                 }, 1000)*/
+                            } else {
+                                materialProgressDialog.dismiss()
+                                val gson1 = GsonBuilder().create()
+                                var mError: OtpErrorModel
+                                try {
+                                    val s = response.errorBody()!!.string()
+                                    mError = gson1.fromJson(s, OtpErrorModel::class.java)
+                                    if (mError.error.code.equals(400)) {
+                                        GlobalMethods.showError(
+                                            this@ProductionOrderLinesActivity,
+                                            mError.error.message.value
+                                        )
+                                    }
+                                    if (mError.error.message.value != null) {
+                                        GlobalMethods.showError(
+                                            this@ProductionOrderLinesActivity,
+                                            mError.error.message.value
+                                        )
+                                        Log.e("json_error------", mError.error.message.value)
+                                    }
+                                } catch (e: IOException) {
+                                    e.printStackTrace()
+                                }
+
+                            }
+                        } catch (e: Exception) {
+                            materialProgressDialog.dismiss()
+                            e.printStackTrace()
+                            Log.e("catch---------", e.toString())
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.e("orderLines_failure-----", t.toString())
+                        materialProgressDialog.dismiss()
+                    }
+
+                })
+            }
+        } else {
+            materialProgressDialog.dismiss()
+            GlobalMethods.showError(this@ProductionOrderLinesActivity, "No network connection")
+        }
+    }
+
     //todo getting batch order lines and quantity data from adapter to activity...
     override fun onApiResponse(
         response: HashMap<String, ArrayList<ScanedOrderBatchedItems.Value>>,
@@ -287,9 +367,9 @@ class ProductionOrderLinesActivity : AppCompatActivity(), PassList, ProductionOr
         hashmapBatchQuantityList = quantityResponse
         serialHashMapQuantityList = serialQuantityResponse
         noneHashMapQuantityList = noneQuantityResponse
-        Log.e("ISSUE_PRODUCTION","hashmap---> ${toSimpleJson(hashMapBatchList)}")
-        Log.e("ISSUE_PRODUCTION","batchQuantityList--> ${toSimpleJson(hashmapBatchQuantityList)}")
-        Log.e("ISSUE_PRODUCTION","batchQuantityList--> ${toSimpleJson(serialHashMapQuantityList)}")
+        Log.e("ISSUE_PRODUCTION", "hashmap---> ${toSimpleJson(hashMapBatchList)}")
+        Log.e("ISSUE_PRODUCTION", "batchQuantityList--> ${toSimpleJson(hashmapBatchQuantityList)}")
+        Log.e("ISSUE_PRODUCTION", "batchQuantityList--> ${toSimpleJson(serialHashMapQuantityList)}")
         saveProductionOrderLinesItems()
 
     }
@@ -326,7 +406,7 @@ class ProductionOrderLinesActivity : AppCompatActivity(), PassList, ProductionOr
             for (i in tempList.indices) {
                 val item = tempList[i]
                 if (item.binAllocationJSONs.isNullOrEmpty() && item.BinManaged == "Y" && item.isScanned > 0) {
-                    errorList.add(ErrorItemDetails(i+1, item.ItemNo, item.BatchNumber.toString(), item.ItemName.toString()))
+                    errorList.add(ErrorItemDetails(i + 1, item.ItemNo, item.BatchNumber.toString(), item.ItemName.toString()))
                 }
             }
 
@@ -497,7 +577,7 @@ class ProductionOrderLinesActivity : AppCompatActivity(), PassList, ProductionOr
 
             postedJson.add("DocumentLines", DocumentLinesArray)
 
-            Log.e("ISSUE_PRODUCTION","Final Payload JSON :$postedJson")
+            Log.e("ISSUE_PRODUCTION", "Final Payload JSON :$postedJson")
 
             /*activityFormBinding.chipSave.isEnabled = false
             activityFormBinding.chipSave.isCheckable = false*/
@@ -528,7 +608,17 @@ class ProductionOrderLinesActivity : AppCompatActivity(), PassList, ProductionOr
                             if (response.isSuccessful) {
                                 if (response.code() == 201) {
                                     Log.e("success------", "Successful!")
+                                    // If validation passes, prepare stage request
+                                    val stageStatusRequest = StageStatusUpdateRequest()
 
+                                    // Add stage dynamically
+                                    stageStatusRequest.ProductionOrdersStages.add(
+                                        StageStatusUpdateRequest.ProductionOrderStage(
+                                            StageID = stageId.toInt(),
+                                            U_Status = "Yes"
+                                        )
+                                    )
+                                    callUpdateStageStatusApi(stageStatusRequest)
                                     val docNum = response.body()?.DocNum ?: "N/A"
 
                                     showSuccessDialog(
@@ -651,38 +741,38 @@ class ProductionOrderLinesActivity : AppCompatActivity(), PassList, ProductionOr
     }*/
 
 
-   /* private fun getAggregatedBinArray(
-        binAllocations: ArrayList<PurchaseRequestModel.binAllocationJSONs>,
-        baseLineValue: String
-    ): JsonArray {
-        val binMap = mutableMapOf<Int, Double>()
+    /* private fun getAggregatedBinArray(
+         binAllocations: ArrayList<PurchaseRequestModel.binAllocationJSONs>,
+         baseLineValue: String
+     ): JsonArray {
+         val binMap = mutableMapOf<Int, Double>()
 
-        for (bin in binAllocations) {
-            val entryStr = bin.BinAbsEntry
-            val quantityStr = bin.Quantity
+         for (bin in binAllocations) {
+             val entryStr = bin.BinAbsEntry
+             val quantityStr = bin.Quantity
 
-            // Convert safely to Int and Double
-            val entry = entryStr?.toIntOrNull()
-            val quantity = quantityStr?.toDoubleOrNull()
+             // Convert safely to Int and Double
+             val entry = entryStr?.toIntOrNull()
+             val quantity = quantityStr?.toDoubleOrNull()
 
-            if (entry != null && quantity != null) {
-                val currentQty = binMap[entry] ?: 0.0
-                binMap[entry] = currentQty + quantity
-            }
-        }
+             if (entry != null && quantity != null) {
+                 val currentQty = binMap[entry] ?: 0.0
+                 binMap[entry] = currentQty + quantity
+             }
+         }
 
-        val binArray = JsonArray()
-        for ((entry, totalQty) in binMap) {
-            val binObject = JsonObject().apply {
-                addProperty("BinAbsEntry", entry)
-                addProperty("Quantity", totalQty)
-                addProperty("SerialAndBatchNumbersBaseLine", baseLineValue)
-            }
-            binArray.add(binObject)
-        }
+         val binArray = JsonArray()
+         for ((entry, totalQty) in binMap) {
+             val binObject = JsonObject().apply {
+                 addProperty("BinAbsEntry", entry)
+                 addProperty("Quantity", totalQty)
+                 addProperty("SerialAndBatchNumbersBaseLine", baseLineValue)
+             }
+             binArray.add(binObject)
+         }
 
-        return binArray
-    }*/
+         return binArray
+     }*/
 
 
     val handler = Handler(Looper.getMainLooper())

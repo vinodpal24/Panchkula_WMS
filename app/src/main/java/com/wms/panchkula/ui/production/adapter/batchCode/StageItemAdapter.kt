@@ -1,7 +1,9 @@
 package com.wms.panchkula.ui.production.adapter.batchCode
 
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -9,12 +11,15 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.wms.panchkula.Global_Classes.GlobalMethods
+import com.wms.panchkula.Global_Classes.GlobalMethods.toPrettyJson
 import com.wms.panchkula.R
 import com.wms.panchkula.databinding.RvItemStagesBinding
 import com.wms.panchkula.ui.production.model.batchCode.ProductionOrderData
 import com.wms.panchkula.ui.production.model.batchCode.ProductionOrderStageModel
 
 class StageItemAdapter(
+    private val context: Context,
     private val stages: List<ProductionOrderStageModel.Value.ProductionOrdersStage>, private val plannedQuantity: String,
     private val onStageClick: (stagePos: Int, stage: ProductionOrderStageModel.Value.ProductionOrdersStage) -> Unit,
     private val onStageUpdate: (stagePos: Int, stage: ProductionOrderStageModel.Value.ProductionOrdersStage) -> Unit,
@@ -38,30 +43,64 @@ class StageItemAdapter(
             } else {
                 holder.binding.layoutStageItem.setBackgroundResource(R.drawable.bg_stage_item_freeze)
             }*/
+            Log.d("STAGES","Stages List: ${toPrettyJson(stages)}")
             val accept = stage.U_AQty
             val reject = stage.U_RQty
-            layoutStageItem.setBackgroundResource(
-                when {
-                    // Case 1: Both Accept & Reject Qty are empty (null or 0) → freeze
-                    (accept == 0.0 && reject == 0.0) -> R.drawable.bg_stage_item_freeze
 
-                    // Case 2: Either Accept > 0 and Reject = 0 OR Accept = 0 and Reject > 0 → freeze
-                    (accept > 0.0 && reject == 0.0) || (accept == 0.0 && reject > 0.0) -> R.drawable.bg_stage_item_freeze
-
-                    // Case 3: Otherwise → open
-                    else -> R.drawable.bg_stage_item_open
-                }
-            )
             tvStageName.text = stage.Name
             val openQty: Double = when (position) {
                 0 -> plannedQuantity.toDoubleOrNull() ?: 0.0   // first stage = Planned qty
-                else -> stages[position].U_AQty //- stages[position - 1].U_RQty  // from previous stage's accepted qty
+                else -> stages[position - 1].U_AQty //- stages[position - 1].U_RQty  // from previous stage's accepted qty
             }
+            stage.OpenQty = openQty
             tvOpenQty.text = openQty.toString() // "100.00"  // for demo
 
+            if (((accept == 0.0 && reject == 0.0) && stage.OpenQty == 0.0) || ((accept > 0.0 && reject >= 0.0) || (accept >= 0.0 && reject > 0.0))) {
+                layoutStageItem.alpha = 0.5F
+                btnStageUpdate.isEnabled = false
+                etAcceptQty.isEnabled = false
+                etRejectQty.isEnabled = false
+                layoutStageItem.setBackgroundResource(R.drawable.bg_stage_item_freeze)
+            } else if ((accept == 0.0 && reject == 0.0) && (position == 0 || (stage.OpenQty ?: 0.0) > 0.0)) {
+                layoutStageItem.alpha = 1.0F
+                btnStageUpdate.isEnabled = true
+                etAcceptQty.isEnabled = true
+                etRejectQty.isEnabled = true
+                layoutStageItem.setBackgroundResource(R.drawable.bg_stage_item_open)
+            } else {
+                layoutStageItem.alpha = 1.0F
+                btnStageUpdate.isEnabled = true
+                etAcceptQty.isEnabled = true
+                etRejectQty.isEnabled = true
+                layoutStageItem.setBackgroundResource(R.drawable.bg_stage_item_open)
+            }
+            /*layoutStageItem.setBackgroundResource(
+                when {
+                    // Case 1: Both Accept & Reject Qty are empty (null or 0) → freeze
+                    (accept == 0.0 && reject == 0.0) -> {
+                        R.drawable.bg_stage_item_freeze
+                    }
 
-            root.setOnClickListener {
-                onStageClick(position, stage)
+                    // Case 2: Either Accept > 0 and Reject = 0 OR Accept = 0 and Reject > 0 → freeze
+                    (accept > 0.0 && reject >= 0.0) || (accept >= 0.0 && reject > 0.0) -> {
+                        R.drawable.bg_stage_item_freeze
+                    }
+
+                    // Case 3: Otherwise → open
+                    else -> {
+                        R.drawable.bg_stage_item_open
+                    }
+                }
+            )*/
+
+
+            layoutStageItem.setOnClickListener {
+                if (((accept > 0.0 && reject >= 0.0) || (accept >= 0.0 && reject > 0.0))) {
+                    GlobalMethods.showError(context, "This stage already updated.")
+                } else {
+                    onStageClick(position, stage)
+                }
+
             }
 
 
@@ -86,10 +125,16 @@ class StageItemAdapter(
                     }*/
 
                     else -> {
+
                         stage.OpenQty = openQty
                         stage.AcceptQty = accept
                         stage.RejectQty = reject
-                        onStageUpdate(position, stage)
+                        if (stage.U_Status == "Yes") {
+                            onStageUpdate(position, stage)
+                        } else {
+                            GlobalMethods.showError(context, "You can't update this stage until the required RM items have been issued for it.")
+                        }
+
                     }
                 }
             }
